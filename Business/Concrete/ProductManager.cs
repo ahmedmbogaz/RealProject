@@ -26,7 +26,7 @@ namespace Business.Concrete
         }
 
 
-        [ValidationAspect(typeof(ProductValidator))]
+        [ValidationAspect(typeof(ProductValidator))] //add metodunu doğrula, productvalidator da ki kurallara göre
         public IResult Add(Product product)
         {
 
