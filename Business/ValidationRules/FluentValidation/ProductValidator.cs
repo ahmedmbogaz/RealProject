@@ -19,12 +19,12 @@ namespace Business.ValidationRules.FluentValidation
             RuleFor(p=>p.UnitPrice).GreaterThan(0);//unitprice 0 dan büyük olmalı
             RuleFor(p=>p.UnitPrice).GreaterThanOrEqualTo(10).When(p=>p.CategoryId==1);
             //içecek kategorisinde ise içecek kategorisinin ürünlerinin fiyatı min 10 olmalı demek (when şarttır.)
-            RuleFor(p => p.ProductName).Must(StarWithA).WithMessage("Ürünler Aharfi ile başlamalı");// isimler artık A ile başlasın
+            //RuleFor(p => p.ProductName).Must(StarWithA).WithMessage("Ürünler Aharfi ile başlamalı");// isimler artık A ile başlasın
         }
 
-        private bool StarWithA(string arg) // arg: gönderdiğin parametredir.
-        {
-            return arg.StartsWith("A"); //A ile başlarsa true döner, başka harle başlarsa false döner
-        }
+        //private bool StarWithA(string arg) // arg: gönderdiğin parametredir.
+        //{
+        //    return arg.StartsWith("A"); //A ile başlarsa true döner, başka harle başlarsa false döner
+        //}
     }
 }
