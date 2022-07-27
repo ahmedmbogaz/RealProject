@@ -1,6 +1,7 @@
 using Business.Abstract;
 using Business.Concrete;
 using Core.DependencyResolvers;
+using Core.Entities;
 using Core.Extensions;
 using Core.Utilities.IoC;
 using Core.Utilities.Security.Encryption;
@@ -48,6 +49,8 @@ namespace WebAPI
             //biri constracter da IProducrService isterse ona arka plan da ProductMnanager new i gönder demek.(üst satýr)
             //services.AddSingleton<IProductDal, EfProductDal>();
 
+            services.AddCors();
+
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -79,6 +82,10 @@ namespace WebAPI
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebAPI v1"));
             }
+
+            app.ConfigureCustomExceptionMiddleware();
+            //adresten gelene guveniyoum demektir
+            app.UseCors(builder=>builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
 
             app.UseHttpsRedirection();
 

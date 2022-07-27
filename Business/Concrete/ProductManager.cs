@@ -32,7 +32,7 @@ namespace Business.Concrete
             _categoryService = categoryService;
         }
 
-        [SecuredOperation("product.add,admin")]
+        //[SecuredOperation("product.add,admin")]
         [ValidationAspect(typeof(ProductValidator))] //add metodunu doğrula, productvalidator da ki kurallara göre
         [CacheRemoveAspect("IProductService.Get")] //IProductService teki bütün getlerden siler.
         public IResult Add(Product product)
@@ -52,7 +52,7 @@ namespace Business.Concrete
         [CacheAspect]
         public IDataResult<List<Product>> GetAll()
         {
-            if (DateTime.Now.Hour == 10) // saat 22 de sistemi kapat gibi
+            if (DateTime.Now.Hour == 5) // saat 22 de sistemi kapat gibi
             {
                 return new ErrorDataResult<List<Product>>(Messages.MaintenanceTime); //bakım zamanı
             }
@@ -125,5 +125,6 @@ namespace Business.Concrete
             Add(product);
             return null;
         }
+        
     }
 }
