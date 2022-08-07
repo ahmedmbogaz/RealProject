@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.DataAcceess.EntityFramework
+namespace Core.DataAccess.EntityFramework
 {
     public interface IEntityRepository<T> where T:class,IEntity, new() //referans tip olabilir
     {
